@@ -1,0 +1,27 @@
+Initialize engine version: 5.3.3f1 (910d71450a97)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 5800 Series (ID=0x6898)
+    Vendor:   ATI
+    VRAM:     2024 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.121 seconds
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: X:\Users\Jason\Documents\Lockpick\Lockpick_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 144Hz; virtual: 3840x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.512670 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 15e4 -> priority: 1 
+  Thread -> id: f4 -> priority: 1 
