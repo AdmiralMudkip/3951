@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PickMove : MonoBehaviour {
-
-    float x, y;
-	void Start () {
-	    x = Screen.width / 2;
-        y = Screen.height / 3;
+    private Vector3 object_pos;
+    void Start () {
+        object_pos = Camera.main.WorldToScreenPoint(GameObject.Find("PivotPoint").transform.position);
     }
 
     // Update is called once per frame
     void Update () {
-        //transform.Rotate(new Vector3(x, y), Mathf.Tan((x / Input.mousePosition.x)));
-        //Debug.Log(Input.mousePosition.x);
-        //Input.mousePosition.x
+        float angle = Mathf.Atan2(Input.mousePosition.y - object_pos.y, Input.mousePosition.x - object_pos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
     }
 }
