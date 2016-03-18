@@ -12,21 +12,22 @@ public class LockTurn : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.A) && (transform.eulerAngles.z < 90 || transform.eulerAngles.z > 359))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward, speed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D) && (transform.eulerAngles.z > 270 || transform.eulerAngles.z < 1))
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(Vector3.back, speed * Time.deltaTime);
         }
-        else if (transform.eulerAngles.z < 359 && transform.eulerAngles.z >= 269)
+        else if (Mathf.DeltaAngle(transform.eulerAngles.z,0) > 0)
         {
-            transform.Rotate(Vector3.forward, resetspeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, speed * Time.deltaTime);
         }
-        else if (transform.eulerAngles.z > 1 && transform.eulerAngles.z <= 91)
+        else
         {
-            transform.Rotate(Vector3.back, resetspeed * Time.deltaTime);
+            transform.Rotate(Vector3.back, speed * Time.deltaTime);
         }
+
     }
 }
