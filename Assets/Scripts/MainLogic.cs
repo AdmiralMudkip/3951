@@ -17,6 +17,13 @@ public class MainLogic : MonoBehaviour {
     }
 
     void Update() {
+        float angle = Mathf.Atan2(Input.mousePosition.y - Camera.main.WorldToScreenPoint(pickPivot.transform.position).y, Input.mousePosition.x - Camera.main.WorldToScreenPoint(pickPivot.transform.position).x) * Mathf.Rad2Deg;
+        if (Mathf.DeltaAngle(angle, 0) > 90)
+            angle = 180;
+        else if (angle < Mathf.DeltaAngle(angle, 0))
+            angle = 0;
+        pickPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+
         //lock rotation from start
         float lockRotation = Mathf.DeltaAngle(0, lockPivot.transform.eulerAngles.z);
         if (Mathf.Abs(lockRotation) >= 90) {
