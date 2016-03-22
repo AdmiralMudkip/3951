@@ -17,12 +17,11 @@ public class MainLogic : MonoBehaviour {
     }
 
     void Update() {
-        float angle = Mathf.Atan2(Input.mousePosition.y - Camera.main.WorldToScreenPoint(pickPivot.transform.position).y, Input.mousePosition.x - Camera.main.WorldToScreenPoint(pickPivot.transform.position).x) * Mathf.Rad2Deg;
-        if (Mathf.DeltaAngle(angle, 0) > 90)
-            angle = 180;
-        else if (angle < Mathf.DeltaAngle(angle, 0))
-            angle = 0;
-        pickPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        float pickRotation = Mathf.Atan2(Input.mousePosition.y - Camera.main.WorldToScreenPoint(pickPivot.transform.position).y, Input.mousePosition.x - Camera.main.WorldToScreenPoint(pickPivot.transform.position).x) * Mathf.Rad2Deg;
+        if (Mathf.DeltaAngle(pickRotation, 0) > 90)
+            pickRotation = 180;
+        else if (Mathf.DeltaAngle(pickRotation, 0) > 0)
+            pickRotation = 0;
 
         //lock rotation from start
         float lockRotation = Mathf.DeltaAngle(0, lockPivot.transform.eulerAngles.z);
@@ -32,7 +31,9 @@ public class MainLogic : MonoBehaviour {
             float allowedRotation = Mathf.Max(0, (90 + sweetSpotWidth / 2 - Mathf.Abs(Mathf.DeltaAngle(pickPivot.transform.eulerAngles.z, sweetSpotAngle))));
             if (allowedRotation < Mathf.Abs(lockRotation)) {
                 lockPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, allowedRotation * Mathf.Sign(lockRotation)));
+                pickRotation += Random.Range(-3, 3);
             }
         }
+        pickPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, pickRotation - 90));
     }
 }
