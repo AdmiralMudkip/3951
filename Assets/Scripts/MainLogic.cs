@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class MainLogic : MonoBehaviour {
     private GameObject lockPivot;
     private GameObject pickPivot;
     private int sweetSpotWidth = 10;
     private int sweetSpotAngle = 90;
+    int score = 0;
+    Text t;
     // Use this for initialization
     void Start() {
         lockPivot = GameObject.Find("LockPivot");
         pickPivot = GameObject.Find("PickPivot");
+        t = GameObject.Find("Text").GetComponent<Text>();
     }
 
     void lockPicked() {
         sweetSpotAngle = 270 + Random.Range(0, 180);
         lockPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        t.text = "Score: " + ++score;
     }
 
     void Update() {

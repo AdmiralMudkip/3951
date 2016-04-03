@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEditor.SceneManagement;
 
 using System.Collections;
 
@@ -20,14 +20,14 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        startButton = startButton.GetComponent<Button>();
-        quitButton = quitButton.GetComponent<Button>();
-        startServerButton = startServerButton.GetComponent<Button>();
-        connectServerButton = connectServerButton.GetComponent<Button>();
+        //startButton = startButton.GetComponent<Button>();
+        //quitButton = quitButton.GetComponent<Button>();
+        //startServerButton = startServerButton.GetComponent<Button>();
+        //connectServerButton = connectServerButton.GetComponent<Button>();
 
-        // manager = new NetworkManager();
+        manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
 
-        //manager.networkPort = 1337;
+        manager.networkPort = 1337;
     }
 
     public void Exit()
@@ -37,18 +37,19 @@ public class MainMenu : MonoBehaviour
 
     public void StartLevel()
     {
-       //SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     public void StartMultiPlayerHost()
     {
         manager.StartServer();
-        //SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void StartMultiplayerConnect()
     {
         manager.networkAddress = "127.0.0.1";
         manager.StartClient();
-       // SceneManager.LoadScene(1);
+        //something about getting the IP
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }
