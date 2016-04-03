@@ -1,33 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using UnityEditor.SceneManagement;
-
+using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
+using System.Net;
 
 public class MainMenu : MonoBehaviour
 {
-    
-    public Button startButton, quitButton, startServerButton, connectServerButton;
-    
-    //static SceneManager Instance;
-    NetworkManager manager;
+    InputField IP;
+    Text t;
+    Button b;
+    int i;
+    NetworkManager netManager;
+    NetTest n;
 
     void Awake()
     {
-        DontDestroyOnLoad(manager);
+        DontDestroyOnLoad(netManager);
+        netManager = NetworkManager.singleton;
     }
 
     void Start()
     {
-        //startButton = startButton.GetComponent<Button>();
-        //quitButton = quitButton.GetComponent<Button>();
-        //startServerButton = startServerButton.GetComponent<Button>();
-        //connectServerButton = connectServerButton.GetComponent<Button>();
-
-        manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
-
-        manager.networkPort = 1337;
+        n = new NetTest();
+        t = GameObject.Find("test").GetComponent<Text>();
+        b = GameObject.Find("testingbutton").GetComponent<Button>();
+        netManager = NetworkManager.singleton;
+        //IP = connectServerButton.GetComponent<InputField>();        
     }
 
     public void Exit()
@@ -35,21 +35,46 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void StartLevel()
+    public void testClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        i++;
+        int z = 0;
+        if (Network.isClient)
+            z = n.SendMessageToServer(i);
+        
+        if (Network.isServer)
+            z = n.SendMessageToClient(i);
+
+        t.text = z.ToString();
+    }
+
+
+    public void StartSinglePlayer()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void StartMultiPlayerHost()
     {
-        manager.StartServer();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        netManager.StartServer();
+        t.text = "Server started, waiting for connection.";
+
+
+        //SceneManager.LoadScene(1);
     }
     public void StartMultiplayerConnect()
     {
-        manager.networkAddress = "127.0.0.1";
-        manager.StartClient();
-        //something about getting the IP
-        //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+
+        netManager.networkAddress = "127.0.0.1";
+        netManager.StartClient();
+
+        //t.text = "Connected to server";
+
+        
+        //SceneManager.LoadScene(1);
     }
+
+
+    
 }
+

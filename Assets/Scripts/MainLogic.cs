@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class MainLogic : MonoBehaviour {
     private GameObject lockPivot;
@@ -8,11 +9,13 @@ public class MainLogic : MonoBehaviour {
     private int sweetSpotAngle = 90;
     int score = 0;
     Text t;
+    NetworkManager m;
     // Use this for initialization
     void Start() {
         lockPivot = GameObject.Find("LockPivot");
         pickPivot = GameObject.Find("PickPivot");
         t = GameObject.Find("Text").GetComponent<Text>();
+        //m= NetworkManager.
     }
 
     void lockPicked() {
