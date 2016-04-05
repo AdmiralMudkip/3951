@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
     public void testClick()
     {
         i++;
+		string myIp = new System.Net.WebClient().DownloadString(@"http://icanhazip.com").Trim();
         int z = 0;
         if (Network.isClient)
             z = n.SendMessageToServer(i);
@@ -44,7 +45,7 @@ public class MainMenu : MonoBehaviour
         if (Network.isServer)
             z = n.SendMessageToClient(i);
 
-        t.text = z.ToString();
+		t.text = myIp.ToString();
     }
 
 
