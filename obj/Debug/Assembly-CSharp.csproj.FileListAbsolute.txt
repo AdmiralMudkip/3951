@@ -19,3 +19,4 @@ D:\Documents\GitHub\3951\Temp\bin\Debug\UnityEngine.Networking.xml
 D:\Documents\GitHub\3951\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\Documents\GitHub\3951\obj\Debug\Assembly-CSharp.dll
 D:\Documents\GitHub\3951\obj\Debug\Assembly-CSharp.pdb
+D:\Documents\GitHub\3951\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
