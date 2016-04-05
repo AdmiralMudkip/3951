@@ -4,7 +4,6 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
-using System.Net;
 
 public class MainMenu : MonoBehaviour
 {

@@ -3,28 +3,33 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class MainLogic : MonoBehaviour {
-    private GameObject lockPivot;
-    private GameObject pickPivot;
+    public GameObject lockPivot;
+    public GameObject pickPivot;
+    public Text Score;
+    public Text Timer;
+
     private int sweetSpotWidth = 10;
     private int sweetSpotAngle = 90;
     int score = 0;
-    Text t;
+
+    float timeLeft = 300.0f;
+
     NetworkManager m;
     // Use this for initialization
     void Start() {
-        lockPivot = GameObject.Find("LockPivot");
-        pickPivot = GameObject.Find("PickPivot");
-        t = GameObject.Find("Text").GetComponent<Text>();
-        //m= NetworkManager.
+        
+
+
     }
 
     void lockPicked() {
         sweetSpotAngle = 270 + Random.Range(0, 180);
         lockPivot.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        t.text = "Score: " + ++score;
+        Score.text = "Score: " + ++score;
     }
 
     void Update() {
+        
         float pickRotation = Mathf.Atan2(Input.mousePosition.y - Camera.main.WorldToScreenPoint(pickPivot.transform.position).y, Input.mousePosition.x - Camera.main.WorldToScreenPoint(pickPivot.transform.position).x) * Mathf.Rad2Deg;
         if (Mathf.DeltaAngle(pickRotation, 0) > 90)
             pickRotation = 180;
