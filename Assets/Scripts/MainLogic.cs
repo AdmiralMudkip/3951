@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class MainLogic : MonoBehaviour {
     public GameObject lockPivot;
@@ -33,10 +34,19 @@ public class MainLogic : MonoBehaviour {
         sweetSpotAngle = 90;
 
         timerStartValue = 60;
-        score = 0;
 
+        restart();
+    }
+
+    public void restart() {
+        score = 0;
+        Score.text = "Score: 0";
         gameEndAt = Time.time + timerStartValue;
         nextPickAt = Time.time;
+    }
+
+    public void menu() {
+        SceneManager.LoadScene("Main");
     }
 
     void lockPicked() {
