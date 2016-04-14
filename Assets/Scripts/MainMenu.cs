@@ -5,47 +5,34 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 
+
+/// <summary>
+/// Authors: Jason Burns, Markus Linseisen, Naseem Hammoud.
+/// 
+/// This is an attempt at a networked game, copying Skyrim and Bethesda's 
+/// 'lockpicking' minigame.  It was supposed to be networked, but unfortunately we were 
+/// not able to acheive this component of the game.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     InputField IP;
     Text t;
     Button b;
-    int i;
-    NetworkManager netManager;
-    NetTest n;
+    public static NetworkClient client;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(netManager);
-        netManager = NetworkManager.singleton;
-    }
+    int i;
 
     void Start()
     {
-        n = new NetTest();
         t = GameObject.Find("test").GetComponent<Text>();
         b = GameObject.Find("testingbutton").GetComponent<Button>();
-        netManager = NetworkManager.singleton;
-        //IP = connectServerButton.GetComponent<InputField>();        
     }
 
-    public void Exit()
-    {
-        Application.Quit();
-    }
 
     public void testClick()
     {
-        i++;
-		string myIp = new System.Net.WebClient().DownloadString(@"http://icanhazip.com").Trim();
-        int z = 0;
-        if (Network.isClient)
-            z = n.SendMessageToServer(i);
-        
-        if (Network.isServer)
-            z = n.SendMessageToClient(i);
-
-		t.text = myIp.ToString();
+        string myIp = new System.Net.WebClient().DownloadString(@"http://icanhazip.com").Trim();
+        t.text = myIp.ToString();
     }
 
 
@@ -56,25 +43,26 @@ public class MainMenu : MonoBehaviour
 
     public void StartMultiPlayerHost()
     {
-        netManager.StartServer();
         t.text = "Server started, waiting for connection.";
 
+        //NetworkServer.Listen(8888);
+        //NetworkServer.RegisterHandler(500, clientconnection);
 
         //SceneManager.LoadScene(1);
     }
     public void StartMultiplayerConnect()
     {
+        //client.Connect("127.0.0.1", 8888);
+        //if (client.isConnected)
+        //{
+        //    Client.send(500, new tempMsg());    
+        //    SceneManager.LoadScene(1);
+        //}
 
-        netManager.networkAddress = "127.0.0.1";
-        netManager.StartClient();
-
-        //t.text = "Connected to server";
-
-        
         //SceneManager.LoadScene(1);
     }
-
-
-    
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
-
